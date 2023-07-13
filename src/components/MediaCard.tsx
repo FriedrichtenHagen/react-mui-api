@@ -10,7 +10,7 @@ type MediaProps = {image: any, topline: string, title: string}
 
 export default function MediaCard({image, topline, title}: MediaProps): JSX.Element {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 }} className='card-margin'>
       <CardMedia
         sx={{ height: 140 }}
         image={image}
@@ -25,7 +25,6 @@ export default function MediaCard({image, topline, title}: MediaProps): JSX.Elem
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
         <Button size="small">Learn More</Button>
       </CardActions>
     </Card>

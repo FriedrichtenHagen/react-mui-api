@@ -1,18 +1,18 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import Button from '@mui/material/Button';
-import MediaCard from './components/MediaCard.js'
-import image from './test.jpg'
+import MediaCard from './components/MediaCard.tsx'
+import AppBar from './components/AppBar.tsx'
+// import image from './test.jpg'
 
-function App() {
+export default function App() {
   const [news, setNews] = useState([])
 
   function handleApiCall(){
-    fetch("https://www.tagesschau.de/api2/news/?regions=1&ressort=ausland", {
+    fetch("https://www.tagesschau.de/api2/homepage", {
       method: 'GET',
       headers: {
           'Accept': 'application/json',
@@ -24,21 +24,36 @@ function App() {
         console.log(data.news)
       })
   }
+  useEffect(()=>{
+    handleApiCall()
+  }, [])
 
   return (
     <>
-      <Button variant="contained" onClick={handleApiCall}>Get news</Button>
-
-      <ul>
+      <AppBar/>
+      <div className='news-feed'>
       {
-        news.map((item: any) => {
-          return <MediaCard image={image} topline={item.topline} title={item.title} />
+        news.map((item: any, index:number) => {
+          return <MediaCard key={index} image={item.teaserImage.imageVariants['16x9-384']} topline={item.topline} title={item.content[0].value} />
         })
       }
-      </ul>
+      </div>
     </>
   )
 }
 
 
-export default App
+// function NewsFeed(){
+//   return(
+//     <div className='news-feed'>
+//     {
+//       news.map((item: any, index:number) => {
+//         return <MediaCard key={index} image={item.teaserImage.imageVariants['16x9-256']} topline={item.topline} title={item.title} />
+//       })
+//     }
+//     </div>
+//   )
+
+// }
+
+
