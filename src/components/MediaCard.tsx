@@ -6,9 +6,9 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-type MediaProps = {image: any, topline: string, title: string}
+type MediaProps = {image: any, topline: string, title: string, buttonClickHandler: Function}
 
-export default function MediaCard({image, topline, title}: MediaProps): JSX.Element {
+export default function MediaCard({image, topline, title, buttonClickHandler}: MediaProps): JSX.Element {
   return (
     <Card sx={{ maxWidth: 345 }} className='card-margin'>
       <CardMedia
@@ -25,7 +25,7 @@ export default function MediaCard({image, topline, title}: MediaProps): JSX.Elem
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button onClick={buttonClickHandler} size="small">Learn More</Button>
       </CardActions>
     </Card>
   );

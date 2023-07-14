@@ -4,15 +4,18 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import MediaCard from './components/MediaCard.tsx'
+
 import AppBar from './components/AppBar.tsx'
+import NewsFeed from './components/NewsFeed.tsx'
+
 // import image from './test.jpg'
 
 export default function App() {
   const [news, setNews] = useState([])
+  const [articleDetails, setArticleDetails] = useState([])
 
-  function handleApiCall(){
-    fetch("https://www.tagesschau.de/api2/homepage", {
+  function handleApiCall(url: string){
+    fetch(url, {
       method: 'GET',
       headers: {
           'Accept': 'application/json',
@@ -25,35 +28,16 @@ export default function App() {
       })
   }
   useEffect(()=>{
-    handleApiCall()
+    handleApiCall('https://www.tagesschau.de/api2/homepage/')
   }, [])
 
   return (
     <>
       <AppBar/>
-      <div className='news-feed'>
-      {
-        news.map((item: any, index:number) => {
-          return <MediaCard key={index} image={item.teaserImage.imageVariants['16x9-384']} topline={item.topline} title={item.content[0].value} />
-        })
-      }
-      </div>
+      <NewsFeed news={news} />
     </>
   )
 }
 
-
-// function NewsFeed(){
-//   return(
-//     <div className='news-feed'>
-//     {
-//       news.map((item: any, index:number) => {
-//         return <MediaCard key={index} image={item.teaserImage.imageVariants['16x9-256']} topline={item.topline} title={item.title} />
-//       })
-//     }
-//     </div>
-//   )
-
-// }
 
 
