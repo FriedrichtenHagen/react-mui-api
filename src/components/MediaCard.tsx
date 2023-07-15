@@ -6,7 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-type MediaProps = {image: any, topline: string, title: string, buttonClickHandler: Function}
+type MediaProps = {image: any, topline: string, title: string, buttonClickHandler: void}
 
 export default function MediaCard({image, topline, title, buttonClickHandler}: MediaProps): JSX.Element {
   return (

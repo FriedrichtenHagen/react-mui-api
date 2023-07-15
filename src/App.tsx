@@ -7,12 +7,15 @@ import '@fontsource/roboto/700.css';
 
 import AppBar from './components/AppBar.tsx'
 import NewsFeed from './components/NewsFeed.tsx'
-
+import { createContext } from 'react';
 // import image from './test.jpg'
+
+export const NewsContext = createContext({});
+
 
 export default function App() {
   const [news, setNews] = useState([])
-  const [articleDetails, setArticleDetails] = useState([])
+
 
   function handleApiCall(url: string){
     fetch(url, {
@@ -33,8 +36,10 @@ export default function App() {
 
   return (
     <>
-      <AppBar/>
-      <NewsFeed news={news} />
+      <NewsContext.Provider value={news}>
+        <AppBar/>
+        <NewsFeed handleApiCall={handleApiCall}/>
+      </NewsContext.Provider>
     </>
   )
 }
