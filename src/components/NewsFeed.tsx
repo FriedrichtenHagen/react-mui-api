@@ -1,8 +1,8 @@
 
 import MediaCard from './MediaCard.tsx'
 import { useContext } from 'react';
-import NewsContext  from './MediaCard.tsx'
-export default function NewsFeed({handleApiCall}: any){
+import NewsContext  from '../App.tsx'
+export default function NewsFeed({handleApiCall: any}){
 
     const news = useContext(NewsContext);
 

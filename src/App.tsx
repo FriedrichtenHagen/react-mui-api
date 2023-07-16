@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import './App.css'
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -8,10 +8,13 @@ import '@fontsource/roboto/700.css';
 import AppBar from './components/AppBar.tsx'
 import NewsFeed from './components/NewsFeed.tsx'
 import { createContext } from 'react';
-// import image from './test.jpg'
-
-export const NewsContext = createContext({});
-
+ 
+export type NewsContext = {
+  news: string[]
+  setNews: (c: string) => void
+}
+export const NewsContext = createContext<NewsContext>({news: [], setNews: () => {}});
+export const useNewsContext = () => useContext(NewsContext)
 
 export default function App() {
   const [news, setNews] = useState([])
