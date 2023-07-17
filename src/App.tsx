@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -9,16 +9,16 @@ import AppBar from './components/AppBar.tsx'
 import NewsFeed from './components/NewsFeed.tsx'
 import { createContext } from 'react';
  
-export type NewsContext = {
-  news: string[]
-  setNews: (c: string) => void
-}
-export const NewsContext = createContext<NewsContext>({news: [], setNews: () => {}});
-export const useNewsContext = () => useContext(NewsContext)
+type NewsContextType = string[]
+export const NewsContext = createContext<NewsContextType>([]);
 
-export default function App() {
-  const [news, setNews] = useState([])
+type ThemeContextType = "light" | "dark";
+export const ThemeContext = createContext<ThemeContextType>("light");
 
+
+export function App() {
+  const [news, setNews] = useState<string[]>([])
+  const [theme, setTheme] = useState<ThemeContextType>("light");
 
   function handleApiCall(url: string){
     fetch(url, {
@@ -39,10 +39,13 @@ export default function App() {
 
   return (
     <>
-      <NewsContext.Provider value={news}>
-        <AppBar/>
-        <NewsFeed handleApiCall={handleApiCall}/>
-      </NewsContext.Provider>
+      <ThemeContext.Provider value={theme}>
+        <NewsContext.Provider value={news}>
+          <AppBar/>
+          <NewsFeed handleApiCall={handleApiCall}/>
+        </NewsContext.Provider>
+      </ThemeContext.Provider>
+
     </>
   )
 }

@@ -1,16 +1,21 @@
 
 import MediaCard from './MediaCard.tsx'
-import { useContext } from 'react';
-import NewsContext  from '../App.tsx'
-export default function NewsFeed({handleApiCall: any}){
+import { NewsContext } from '../App.tsx'
+import { ThemeContext } from '../App.tsx'
+import { useContext } from "react";
 
-    const news = useContext(NewsContext);
+export default function NewsFeed({handleApiCall}:any){
+
+    const newsCont = useContext(NewsContext)
+    const theme = useContext(ThemeContext);
+
+    console.log(theme)
 
 
     return(
       <div className='news-feed'>
       {
-        news.map((item: any, index:number) => {
+        newsCont.map((item: any, index:number) => {
           return <MediaCard image={item.teaserImage.imageVariants['16x9-256']} topline={item.topline} title={item.title} buttonClickHandler={handleApiCall} key={index} />
         })
       }
