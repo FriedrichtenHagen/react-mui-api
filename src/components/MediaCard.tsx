@@ -6,9 +6,9 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-type MediaProps = {image: any, topline: string, title: string, buttonClickHandler: any}
+type MediaProps = {image: any, topline: string, title: string, buttonClickHandler: any, url: string}
 
-export default function MediaCard({image, topline, title, buttonClickHandler}: MediaProps): JSX.Element {
+export default function MediaCard({image, topline, title, buttonClickHandler, url}: MediaProps): JSX.Element {
   return (
     <Card sx={{ maxWidth: 345 }} className='card-margin'>
       <CardMedia
@@ -25,7 +25,7 @@ export default function MediaCard({image, topline, title, buttonClickHandler}: M
         </Typography>
       </CardContent>
       <CardActions>
-        <Button onClick={()=> buttonClickHandler('https://www.tagesschau.de/api2/news/')} size="small">Learn More</Button>
+        <Button onClick={()=> buttonClickHandler(url)} size="small">Learn More</Button>
       </CardActions>
     </Card>
   );
