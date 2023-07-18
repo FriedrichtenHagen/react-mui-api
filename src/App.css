@@ -25,3 +25,9 @@
 .card-margin{
   margin: 20px 0px;
 }
+.news-feed{
+  max-width: 100vw;
+}
+.article-image{
+  max-width: 100vw;
+}

@@ -18,7 +18,7 @@ export const ThemeContext = createContext<ThemeContextType>("light");
 
 export function App() {
   const [news, setNews] = useState<string[]>([])
-  const [theme, setTheme] = useState<ThemeContextType>("light");
+  const [theme] = useState<ThemeContextType>("light");
 
   function handleApiCall(url: string){
     fetch(url, {

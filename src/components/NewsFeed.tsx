@@ -32,9 +32,6 @@ export default function NewsFeed({handleApiCall}:any){
     }
 
     if(articleView){
-
-        
-
         return(
             <div className='news-feed'>
             <ArticleDetails articleData={articleData}/>
@@ -45,7 +42,7 @@ export default function NewsFeed({handleApiCall}:any){
             <div className='news-feed'>
             {
               newsCont.map((item: any, index:number) => {
-                return <MediaCard image={item.teaserImage.imageVariants['16x9-256']} topline={item.topline} title={item.title} buttonClickHandler={handleArticleViewChange} url={item.details} key={index} />
+                return <MediaCard image={item.teaserImage.imageVariants['16x9-256']} firstSentence={item.firstSentence} title={item.title} buttonClickHandler={handleArticleViewChange} url={item.details} key={index} />
               })
             }
             </div>
